@@ -1,0 +1,46 @@
+
+version: '3.3'
+
+services:
+    nginx:
+
+        build: ./nginx
+
+        container_name: nginx
+
+        ports:
+            - "80:80"
+            - "443:443"
+
+        volumes:
+            - php:/var/www/
+
+        links:
+            - php
+
+    php:
+
+        build: ./php-fpm
+
+        container_name: php-fpm
+
+        volumes:
+            - php:/var/www
+
+        links:
+            - mysql
+
+    mysql:
+
+        build: ./mariadb
+
+        container_name: mysql
+
+        environment:
+            - MYSQL_ROOT_PASSWORD=toor
+            - MYSQL_DATABASE=wordpress
+            - MYSQL_USER=username
+            - MYSQL_PASSWORD=password
+           
+volumes:
+     php:
