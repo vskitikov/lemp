@@ -13,7 +13,9 @@ services:
             - "443:443"
 
         volumes:
-            - php:/var/www/
+            - ./nginx/config:/etc/nginx/conf.d
+            - ./nginx/www:/var/www/
+            - ./nginx/logs:/var/log/nginx/
 
         links:
             - php
@@ -25,7 +27,7 @@ services:
         container_name: php-fpm
 
         volumes:
-            - php:/var/www
+            - ./nginx/www:/var/www
 
         links:
             - mysql
@@ -38,9 +40,10 @@ services:
 
         environment:
             - MYSQL_ROOT_PASSWORD=toor
-            - MYSQL_DATABASE=wordpress
-            - MYSQL_USER=username
-            - MYSQL_PASSWORD=password
-           
-volumes:
-     php:
+            - MYSQL_DATABASE=db
+            - MYSQL_USER=db
+            - MYSQL_PASSWORD=db
+
+        volumes:
+            - ./mariadb/db:/var/lib/mysql
+       
