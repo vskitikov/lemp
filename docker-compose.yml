@@ -45,7 +45,3 @@ services:
 
         volumes:
             - ./mariadb/db:/var/lib/mysql
-<<<<<<< HEAD
-       
-=======
->>>>>>> 846deaff876811117f9709072b61fa0f6777732a
