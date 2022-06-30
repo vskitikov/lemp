@@ -45,3 +45,16 @@ services:
 
         volumes:
             - ./mariadb/db:/var/lib/mysql
+    
+    pma:
+    
+       image: phpmyadmin
+       
+       conatainer_name: phpmyadmin
+       
+       environment:
+            - PMA_HOST=mysql
+            - PMA_PORT=3306
+       
+       links:
+            - mysql
